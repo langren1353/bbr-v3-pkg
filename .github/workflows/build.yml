@@ -47,7 +47,7 @@ jobs:
           uses: mozilla-actions/sccache-action@v0.0.4
 
         - name: Get .config
-          run: curl -sSL https://raw.githubusercontent.com/Zxilly/bbr-v3-pkg/master/.config > bbr/.config
+          run: curl -sSL https://raw.githubusercontent.com/langren1353/bbr-v3-pkg/master/.config > bbr/.config
 
         - name: Setup cache
           uses: actions/cache@v3

@@ -41,7 +41,10 @@ jobs:
               rpm debhelper
         
         - name: Set up Clang
-          run: sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+          run: |
+            wget https://apt.llvm.org/llvm.sh -O llvm.sh
+            sudo chmod +x llvm.sh
+            sudo ./llvm.sh 19
         
         - name: Setup sccache
           uses: mozilla-actions/sccache-action@v0.0.4
@@ -62,14 +65,14 @@ jobs:
             KDEB_COMPRESS: "xz"
           run: |
             make \
-              LLVM=-18 \
+              LLVM=-19 \
               LOCALVERSION="" \
               CC="sccache clang" \
               HOSTCC="sccache clang" \
               olddefconfig
             # Build deb
             make \
-              LLVM=-18 \
+              LLVM=-19 \
               LOCALVERSION="" \
               CC="sccache clang" \
               HOSTCC="sccache clang" \
@@ -79,7 +82,7 @@ jobs:
             rm .version
             # Build rpm
             make \
-              LLVM=-18 \
+              LLVM=-19 \
               LOCALVERSION="" \
               CC="sccache clang" \
               HOSTCC="sccache clang" \
